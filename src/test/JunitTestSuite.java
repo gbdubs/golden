@@ -9,7 +9,9 @@ import org.junit.runners.Suite;
    TestIntToString.class,
    TestIsomorphism.class,
    TestNearlyCompleteGraphIsomorphism.class,
-   TestStateEncoder.class
+   TestRandomGraphCreation.class,
+   TestStateEncoder.class,
+   
 })
 
 public class JunitTestSuite {   

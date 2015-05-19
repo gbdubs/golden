@@ -27,7 +27,8 @@ public class IsomorphismSolver {
 			return null;
 		}
 		
-		Map<Vertex, Vertex> isomorphism = mapAndRemoveFullyConnectedNodes(new HashMap<Vertex, Vertex>(), g, h);
+		//Map<Vertex, Vertex> isomorphism = mapAndRemoveFullyConnectedNodes(new HashMap<Vertex, Vertex>(), g, h);
+		Map<Vertex, Vertex> isomorphism = new HashMap<Vertex, Vertex>();
 		
 		if (isomorphism == null){
 			return null;
