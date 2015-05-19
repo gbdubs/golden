@@ -41,6 +41,7 @@ public class RandomGraphGenerator {
 
 		// Creates a list of vertices not yet connected to the graph
 		List<Integer> toConnect = generateRange(nVerticies);
+		List<Integer> connected = new ArrayList<Integer>();
 
 		// Our running expression is a Set to disallow redundancy
 		Set<String> expression = new HashSet<String>();
@@ -48,9 +49,9 @@ public class RandomGraphGenerator {
 		// Constructs new expressions until we have created the desired # of
 		// edges
 		while (expression.size() < nEdges) {
-			expression.add(generateRandomExpression(nVerticies, toConnect));
+			expression.add(generateRandomExpression(nVerticies, toConnect, connected));
 		}
-
+		
 		String textRepresentation = "";
 		for (String s : expression) {
 			textRepresentation += s;
@@ -73,11 +74,9 @@ public class RandomGraphGenerator {
 		for (String rep : representation) {
 			for (String part : rep.split(" -- ")) {
 				if (!allNodes.containsKey(part.trim())) {
-					String rand = Namer
-							.intToString((int) (Math.random() * 1000 + 1));
+					String rand = Namer.intToString((int) (Math.random() * 1000 + 1));
 					while (uniqueIds.contains(rand)) {
-						rand = Namer
-								.intToString((int) (Math.random() * 1000 + 1));
+						rand = Namer.intToString((int) (Math.random() * 1000 + 1));
 					}
 					uniqueIds.add(rand);
 					allNodes.put(part.trim(), rand);
@@ -109,20 +108,24 @@ public class RandomGraphGenerator {
 	}
 
 	// Generates a random expression using a previously unused variable.
-	private static String generateRandomExpression(int max,
-			List<Integer> toConnect) {
+	private static String generateRandomExpression(int max, List<Integer> toConnect, List<Integer> connected) {
 		if (toConnect.size() == 0) {
 			int num = generateRandomNumber(max);
 			int other = generateRandomNumberExclusive(max, num);
 			return generateStatementFromIntegers(num, other);
 		} else {
-			int num = generateRandomNumberFromSet(toConnect);
-			toConnect.remove(new Integer(num));
-			int other = generateRandomNumberExclusive(max, num);
-			if (toConnect.size() != 0) {
-				other = generateRandomNumberFromSet(toConnect);
+			Integer first = generateRandomNumberFromSet(toConnect);
+			toConnect.remove(first);
+			int second;
+			if (connected.size() > 0){
+				second = generateRandomNumberFromSet(connected);
+			} else {
+				second = generateRandomNumberFromSet(toConnect);
+				toConnect.remove(new Integer(second));
+				connected.add(second);
 			}
-			return generateStatementFromIntegers(num, other);
+			connected.add(first);
+			return generateStatementFromIntegers(first, second);
 		}
 	}
 
@@ -143,8 +146,8 @@ public class RandomGraphGenerator {
 	}
 
 	// Selects a random element of a set.
-	private static int generateRandomNumberFromSet(List<Integer> l) {
-		return l.get((int) (Math.random()) * l.size());
+	private static Integer generateRandomNumberFromSet(List<Integer> l) {
+		return l.get((int) (Math.random() * l.size()));
 	}
 
 	// Returns a sequential integer list containing [1, Max] (both inclusive)

@@ -37,7 +37,7 @@ public class IsomorphismSolver {
 
 		TopologicalSort pivotalSort = new TopologicalSort(pivot);
 		
-		for (Vertex v : h.getVertices()){
+		for (Vertex v : h.getMeekestNodes()){
 			if (v.getNeighbors().size() == pivot.getNeighbors().size()){
 				TopologicalSort otherSort = new TopologicalSort(v);
 				if (pivotalSort.rankedEquals(otherSort)){

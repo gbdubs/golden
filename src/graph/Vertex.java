@@ -75,6 +75,9 @@ public class Vertex {
 	 * be the number of nodes accessible after a third traversal of a breadth
 	 * first search.
 	 * 
+	 * Note that i == 0 will return 1, as you can still get to one vertex without
+	 * traveling at all.
+	 * 
 	 * @param vertex
 	 *            The Vertex that the traversal is based from.
 	 * @param radius
@@ -85,6 +88,7 @@ public class Vertex {
 		Set<Vertex> allAtPrevLevel = new HashSet<Vertex>();
 		allAtPrevLevel.add(this);
 		Set<Vertex> allAtNextLevel = new HashSet<Vertex>();
+		allAtNextLevel.add(this);
 		int currentDepth = 0;
 		while (currentDepth++ < radius) {
 			for (Vertex w : allAtPrevLevel) {

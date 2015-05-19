@@ -9,7 +9,7 @@ import java.util.UUID;
 
 import org.junit.Test;
 
-public class TestGraphCreation {
+public class TestGraphVisualization {
 	
 	@Test
 	public void testGraphVizAPI(){

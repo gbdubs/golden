@@ -13,7 +13,7 @@ public class GraphMaker {
 		}
 		gv.addln(gvc.toGraphVizRepresenation());
 		gv.addln("}"); 
-		File out = new File("/Users/Grady/Desktop/Iso/Castle/"+ name + ".png");   
+		File out = new File("/Users/Grady/Desktop/Iso/Golden/"+ name + ".png");   
 		gv.writeGraphToFile(gv.getGraph(gv.getDotSource(), "png"), out);
 	}
 	

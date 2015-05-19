@@ -86,7 +86,7 @@ public class TestIsomorphism {
 	}
 	
 	@Test
-	public void testFindRandomSizeIsoMorphsim(){
+	public void testFindRandomSizeIsomorphsim(){
 		int minVerticies = 5;
 		int maxVerticies = 200;
 		
