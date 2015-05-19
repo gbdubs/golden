@@ -65,7 +65,7 @@ public class TestIsomorphism {
 	@Test
 	public void testFindsLargeIsomorphism(){
 		int nVerticies = 200;
-		int nEdges = 500;
+		int nEdges = 1000;
 		int nTrials = 100;
 		
 		int trial = 0;
@@ -88,9 +88,9 @@ public class TestIsomorphism {
 	@Test
 	public void testFindRandomSizeIsomorphsim(){
 		int minVerticies = 5;
-		int maxVerticies = 200;
+		int maxVerticies = 150;
 		
-		int nTrials = 100;
+		int nTrials = 20;
 		
 		int trial = 0;
 		

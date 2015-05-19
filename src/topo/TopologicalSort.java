@@ -183,7 +183,13 @@ public class TopologicalSort implements GraphVizCompatable{
 				newEquivalencySets.add(eSet);
 			} else {
 				Set<TopoNode> unresolved = new HashSet<TopoNode>();
-				for (TopoNode tn : eSet){
+				
+				// INTENTIONALLY SHUFFLES TO TEST THAT EITHER CHOICE IS THE SAME.
+				// SEE THE TEST CLASS TestTopoSortConsistency.
+				List<TopoNode> listLikeESet = new ArrayList<TopoNode>(eSet);
+				Collections.shuffle(listLikeESet);
+				
+				for (TopoNode tn : listLikeESet){
 					if (tn.rank == 0 && !choiceMade){
 						unresolved.add(tn);
 						choiceMade = true;

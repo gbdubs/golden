@@ -30,10 +30,6 @@ public class IsomorphismSolver {
 		//Map<Vertex, Vertex> isomorphism = mapAndRemoveFullyConnectedNodes(new HashMap<Vertex, Vertex>(), g, h);
 		Map<Vertex, Vertex> isomorphism = new HashMap<Vertex, Vertex>();
 		
-		if (isomorphism == null){
-			return null;
-		}
-		
 		Vertex pivot = g.getMeekestNode();
 
 		TopologicalSort pivotalSort = new TopologicalSort(pivot);
@@ -106,22 +102,6 @@ public class IsomorphismSolver {
 		}
 		
 		return false;
-	}
-	
-	public static Map<Vertex, Vertex> mapAndRemoveFullyConnectedNodes(Map<Vertex, Vertex> isomorphism, Graph g, Graph h){
-		List<Vertex> gTotallyConnected = g.totallyConnected();
-		List<Vertex> hTotallyConnected = h.totallyConnected();
-		
-		if (gTotallyConnected.size() != hTotallyConnected.size()){
-			return null;
-		} else {
-			for(int i = 0; i < gTotallyConnected.size(); i++){
-				isomorphism.put(gTotallyConnected.get(i), hTotallyConnected.get(i));
-				g.removeVertex(gTotallyConnected.get(i));
-				h.removeVertex(hTotallyConnected.get(i));
-			}
-		}
-		return isomorphism;
 	}
 	
 }
